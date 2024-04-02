@@ -1,0 +1,17 @@
+{
+    "name": "oliveira/code-generator",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Uyan"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Code\\": "src/"
+        }
+    }
+}
