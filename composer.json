@@ -8,7 +8,9 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {},
+    "require": {
+        "php": ">=8.2"
+    },
     "autoload": {
         "psr-4": {
             "Code\\": "src/"
