@@ -1,0 +1,87 @@
+<?php
+
+namespace App\Models;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * <h2 style='color: #FF6EC7;'>{@model_name@}模型</h2>
+ * @auther yanyou
+ * @date {@model_create_time@}
+ *
+{@model_properties_define@}
+ */
+class OrderServiceModel extends BaseModel
+{
+    protected $table = 'order_service';
+
+    /**
+     * 按条件查询订单服务状态集合
+     * @param array $condition
+     * @param array $fields
+     * @return Collection|array
+     * @datetime 2024/3/13 11:42
+     * @author YouYan
+     * @version 1.0
+     */
+    public function selectOrderServicesByCondition(array $condition = [], array $fields = ['*']): Collection|array
+    {
+        return $this->newQuery()->where(function(Builder $query) use($condition) {
+            return $this->makeCondition($query, $condition);
+        })->select($fields)->get();
+    }
+
+    /**
+     * 按订单ID查询订单服务状态
+     * @param int $orderId
+     * @return OrderServiceModel|Builder|null
+     * @datetime 2024/3/20 15:20
+     * @author YouYan
+     * @version 1.0
+     */
+    public function selectOrderServiceByOrderId(int $orderId): OrderServiceModel|Builder|null
+    {
+        return $this->newQuery()->where('order_id', $orderId)->first();
+    }
+
+    public function getOrderId(): int
+    {
+        return $this->order_id;
+    }
+
+    public function setOrderId(int $order_id): void
+    {
+        $this->order_id = $order_id;
+    }
+
+    public function getServiceStatus(): int
+    {
+        return $this->service_status;
+    }
+
+    public function setServiceStatus(int $service_status): void
+    {
+        $this->service_status = $service_status;
+    }
+
+    public function getServiceStartTime(): ?string
+    {
+        return $this->service_start_time;
+    }
+
+    public function setServiceStartTime(?string $service_start_time): void
+    {
+        $this->service_start_time = $service_start_time;
+    }
+
+    public function getServiceDoneTime(): ?string
+    {
+        return $this->service_done_time;
+    }
+
+    public function setServiceDoneTime(?string $service_done_time): void
+    {
+        $this->service_done_time = $service_done_time;
+    }
+}
